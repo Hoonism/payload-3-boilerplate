@@ -4,6 +4,10 @@ import { VideoSection } from '@/components/landing/VideoSection'
 import { ApplicationProcess } from '@/components/landing/ApplicationProcess'
 import { SurrogateGallery } from '@/components/landing/SurrogateGallery'
 import { AboutSection } from '@/components/landing/AboutSection'
+import { SurrogateDefinition } from '@/components/landing/SurrogateDefinition'
+import { KeyPoints } from '@/components/landing/KeyPoints'
+import { ProcessCompensation } from '@/components/landing/ProcessCompensation'
+import { CompensationBreakdown } from '@/components/landing/CompensationBreakdown'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -24,6 +28,10 @@ export default async function SurrogateLandingPage() {
       <HeroSection data={landingPage} />
       <VideoSection data={landingPage} />
       <ApplicationProcess data={landingPage} applicationSteps={applicationSteps} />
+      <SurrogateDefinition data={landingPage} />
+      <KeyPoints data={landingPage} />
+      <ProcessCompensation data={landingPage} />
+      <CompensationBreakdown data={landingPage} />
       <SurrogateGallery />
       <AboutSection />
     </main>

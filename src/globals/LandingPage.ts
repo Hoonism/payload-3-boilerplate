@@ -214,6 +214,256 @@ export const LandingPage: GlobalConfig = {
           ],
         },
         {
+          label: 'What is a Surrogate?',
+          fields: [
+            {
+              name: 'surrogateDefinitionTitle',
+              label: 'Section Title',
+              type: 'text',
+              required: true,
+              defaultValue: 'What is a Surrogate?',
+            },
+            {
+              name: 'surrogateDefinition',
+              label: 'Surrogate Definition',
+              type: 'textarea',
+              required: true,
+              defaultValue: 'A surrogate, also known as a gestational carrier, is a woman who carries and delivers a baby for intended parents who are unable to conceive or carry a pregnancy themselves.',
+            },
+            {
+              name: 'surrogateDefinitionImage',
+              label: 'Section Image',
+              type: 'upload',
+              relationTo: 'media',
+              required: false,
+            },
+          ],
+        },
+        {
+          label: 'Key Points About Surrogacy',
+          fields: [
+            {
+              name: 'keyPointsTitle',
+              label: 'Section Title',
+              type: 'text',
+              required: true,
+              defaultValue: 'Key Points About Surrogacy:',
+            },
+            {
+              name: 'keyPoints',
+              label: 'Key Points',
+              type: 'array',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  required: true,
+                },
+              ],
+              defaultValue: [
+                {
+                  title: 'Gestational Surrogacy:',
+                  description: 'The surrogate has no genetic connection to the baby. The embryo is created using eggs and sperm from the intended parents or donors.',
+                },
+                {
+                  title: 'Helping Families:',
+                  description: 'Surrogates play a crucial role in helping individuals and couples, including same-sex partners, single parents, and those facing fertility challenges, to build their families.',
+                },
+                {
+                  title: 'Medical Process:',
+                  description: 'The surrogate undergoes in vitro fertilization (IVF) to become pregnant with the intended parents\' embryo.',
+                },
+                {
+                  title: 'Legal Agreements:',
+                  description: 'Surrogacy involves carefully crafted legal contracts to protect all parties involved.',
+                },
+                {
+                  title: 'Emotional Journey:',
+                  description: 'While rewarding, surrogacy is an emotional commitment that requires careful consideration and support.',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Surrogate Process and Compensation',
+          fields: [
+            {
+              name: 'processCompensationTitle',
+              label: 'Section Title',
+              type: 'text',
+              required: true,
+              defaultValue: 'The Surrogate Process and Compensation',
+            },
+            {
+              name: 'processCompensationDescription',
+              label: 'Section Description',
+              type: 'textarea',
+              required: true,
+              defaultValue: 'The surrogacy journey involves several stages, each with its own compensation milestones. Understanding this process can help potential surrogates know what to expect financially throughout their journey.',
+            },
+            {
+              name: 'processCompensationImage',
+              label: 'Section Image',
+              type: 'upload',
+              relationTo: 'media',
+              required: false,
+            },
+            {
+              name: 'processOverviewTitle',
+              label: 'Process Overview Title',
+              type: 'text',
+              required: true,
+              defaultValue: 'Surrogate Process Overview:',
+            },
+            {
+              name: 'processSteps',
+              label: 'Process Steps',
+              type: 'array',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  required: true,
+                },
+              ],
+              defaultValue: [
+                {
+                  title: 'Application and Screening:',
+                  description: 'Initial compensation may be provided after passing medical and psychological screenings.',
+                },
+                {
+                  title: 'Matching with Intended Parents:',
+                  description: 'A small fee might be given upon successful matching.',
+                },
+                {
+                  title: 'Medical Procedures:',
+                  description: 'Compensation for medical appointments, embryo transfer, and related procedures.',
+                },
+                {
+                  title: 'Pregnancy:',
+                  description: 'Monthly payments typically begin once pregnancy is confirmed.',
+                },
+                {
+                  title: 'Delivery:',
+                  description: 'Final compensation is usually provided after the birth of the baby.',
+                },
+              ],
+            },
+            {
+              name: 'processImage',
+              label: 'Process Image',
+              type: 'upload',
+              relationTo: 'media',
+              required: false,
+            },
+          ],
+        },
+        {
+          label: 'Compensation Breakdown',
+          fields: [
+            {
+              name: 'compensationBreakdownTitle',
+              label: 'Section Title',
+              type: 'text',
+              required: true,
+              defaultValue: 'Compensation Breakdown:',
+            },
+            {
+              name: 'compensationItems',
+              label: 'Compensation Items',
+              type: 'array',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  required: true,
+                },
+              ],
+              defaultValue: [
+                {
+                  title: 'Base Compensation:',
+                  description: 'This forms the bulk of the surrogate\'s pay, typically ranging from $30,000 to $60,000 for first time surrogate and up to $100,000 for experienced surrogates.',
+                },
+                {
+                  title: 'Monthly Allowance:',
+                  description: 'Covers pregnancy-related expenses, usually around $200-$300 per month.',
+                },
+                {
+                  title: 'Maternity Clothing Allowance:',
+                  description: 'Often a one-time payment of $500-$1,000.',
+                },
+                {
+                  title: 'Medical Procedure Compensation:',
+                  description: 'Additional payments for embryo transfers, invasive procedures, etc.',
+                },
+                {
+                  title: 'Multiple Birth Compensation:',
+                  description: 'Extra pay for carrying twins or triplets, usually $5,000-$10,000 per additional baby.',
+                },
+                {
+                  title: 'Lost Wages Coverage:',
+                  description: 'Reimbursement for work missed due to surrogacy-related appointments or bed rest.',
+                },
+              ],
+            },
+            {
+              name: 'compensationImage',
+              label: 'Compensation Image',
+              type: 'upload',
+              relationTo: 'media',
+              required: false,
+            },
+            {
+              name: 'additionalBenefitsTitle',
+              label: 'Additional Benefits Title',
+              type: 'text',
+              required: true,
+              defaultValue: 'Additional Benefits:',
+            },
+            {
+              name: 'additionalBenefits',
+              label: 'Additional Benefits',
+              type: 'array',
+              fields: [
+                {
+                  name: 'benefit',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+              defaultValue: [
+                { benefit: 'Comprehensive health insurance coverage' },
+                { benefit: 'Life insurance policy' },
+                { benefit: 'Travel and accommodation expenses for medical appointments' },
+                { benefit: 'Post-birth recovery support' },
+              ],
+            },
+            {
+              name: 'additionalBenefitsImage',
+              label: 'Additional Benefits Image',
+              type: 'upload',
+              relationTo: 'media',
+              required: false,
+            },
+          ],
+        },
+        {
           label: 'Trust Indicators',
           fields: [
             {

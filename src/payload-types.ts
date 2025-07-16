@@ -1738,6 +1738,46 @@ export interface LandingPage {
         id?: string | null;
       }[]
     | null;
+  surrogateDefinitionTitle: string;
+  surrogateDefinition: string;
+  surrogateDefinitionImage?: (number | null) | Media;
+  keyPointsTitle: string;
+  keyPoints?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  processCompensationTitle: string;
+  processCompensationDescription: string;
+  processCompensationImage?: (number | null) | Media;
+  processOverviewTitle: string;
+  processSteps?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  processImage?: (number | null) | Media;
+  compensationBreakdownTitle: string;
+  compensationItems?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  compensationImage?: (number | null) | Media;
+  additionalBenefitsTitle: string;
+  additionalBenefits?:
+    | {
+        benefit: string;
+        id?: string | null;
+      }[]
+    | null;
+  additionalBenefitsImage?: (number | null) | Media;
   yearsInBusiness: number;
   successfulJourneys: number;
   certifications?:
@@ -1883,6 +1923,46 @@ export interface LandingPageSelect<T extends boolean = true> {
         requirement?: T;
         id?: T;
       };
+  surrogateDefinitionTitle?: T;
+  surrogateDefinition?: T;
+  surrogateDefinitionImage?: T;
+  keyPointsTitle?: T;
+  keyPoints?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  processCompensationTitle?: T;
+  processCompensationDescription?: T;
+  processCompensationImage?: T;
+  processOverviewTitle?: T;
+  processSteps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  processImage?: T;
+  compensationBreakdownTitle?: T;
+  compensationItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  compensationImage?: T;
+  additionalBenefitsTitle?: T;
+  additionalBenefits?:
+    | T
+    | {
+        benefit?: T;
+        id?: T;
+      };
+  additionalBenefitsImage?: T;
   yearsInBusiness?: T;
   successfulJourneys?: T;
   certifications?:
