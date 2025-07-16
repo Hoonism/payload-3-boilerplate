@@ -89,25 +89,18 @@ export function HeroSection({ data }: HeroSectionProps) {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-800">
-              Surrogate
-              <br />
-              Mothers
-              <br />
-              <span className="text-pink-600">Needed!</span>
+              {data.heroHeadline || 'Become a Surrogate Mother'}
             </h1>
             
-            <p className="text-xl md:text-2xl mb-4 text-gray-600 font-light">
-              Rewarding Compensation
-            </p>
-            <p className="text-2xl md:text-3xl font-bold text-gray-800 mb-8">
-              Up to $120K!!
+            <p className="text-xl md:text-2xl mb-8 text-gray-600 font-light">
+              {data.heroSubheadline || 'Give the gift of family while earning up to $70,000'}
             </p>
             
             <button
               onClick={() => trackApplicationStart('hero')}
               className="inline-block bg-pink-200 hover:bg-pink-300 text-gray-800 font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
             >
-              Learn more
+              {data.heroCTAText || 'Start Your Application'}
             </button>
           </div>
 

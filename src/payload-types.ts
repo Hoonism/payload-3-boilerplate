@@ -1708,6 +1708,36 @@ export interface LandingPage {
    * If provided, will be used instead of background image
    */
   heroVideo?: (number | null) | Media;
+  videoSectionTitle: string;
+  videoUrl: string;
+  videoTitle: string;
+  videoDescription: string;
+  applicationProcessTitle: string;
+  applicationRequirements?:
+    | {
+        requirement: string;
+        id?: string | null;
+      }[]
+    | null;
+  requirementsTitle: string;
+  selectSectionTitle: string;
+  selectSectionDescription: string;
+  matchSectionTitle: string;
+  matchSectionDescription: string;
+  matchSteps?:
+    | {
+        title: string;
+        description: string;
+        icon: string;
+        id?: string | null;
+      }[]
+    | null;
+  detailedRequirements?:
+    | {
+        requirement: string;
+        id?: string | null;
+      }[]
+    | null;
   yearsInBusiness: number;
   successfulJourneys: number;
   certifications?:
@@ -1823,6 +1853,36 @@ export interface LandingPageSelect<T extends boolean = true> {
   heroCTALink?: T;
   heroBackgroundImage?: T;
   heroVideo?: T;
+  videoSectionTitle?: T;
+  videoUrl?: T;
+  videoTitle?: T;
+  videoDescription?: T;
+  applicationProcessTitle?: T;
+  applicationRequirements?:
+    | T
+    | {
+        requirement?: T;
+        id?: T;
+      };
+  requirementsTitle?: T;
+  selectSectionTitle?: T;
+  selectSectionDescription?: T;
+  matchSectionTitle?: T;
+  matchSectionDescription?: T;
+  matchSteps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  detailedRequirements?:
+    | T
+    | {
+        requirement?: T;
+        id?: T;
+      };
   yearsInBusiness?: T;
   successfulJourneys?: T;
   certifications?:

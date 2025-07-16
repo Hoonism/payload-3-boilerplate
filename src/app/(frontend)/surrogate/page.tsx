@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 }
 
 export default async function SurrogateLandingPage() {
-  const { landingPage } = await getLandingPageData()
+  const { landingPage, applicationSteps } = await getLandingPageData()
 
   return (
     <main className="min-h-screen">
       <HeroSection data={landingPage} />
-      <VideoSection />
-      <ApplicationProcess />
+      <VideoSection data={landingPage} />
+      <ApplicationProcess data={landingPage} applicationSteps={applicationSteps} />
       <SurrogateGallery />
       <AboutSection />
     </main>
