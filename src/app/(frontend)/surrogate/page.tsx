@@ -1,12 +1,9 @@
 import { getLandingPageData } from '@/lib/api/landing-page'
 import { HeroSection } from '@/components/landing/HeroSection'
-import { TrustIndicators } from '@/components/landing/TrustIndicators'
-import { AboutSection } from '@/components/landing/AboutSection'
-import { BenefitsSection } from '@/components/landing/BenefitsSection'
+import { VideoSection } from '@/components/landing/VideoSection'
 import { ApplicationProcess } from '@/components/landing/ApplicationProcess'
-import { TestimonialsSection } from '@/components/landing/TestimonialsSection'
-import { FAQSection } from '@/components/landing/FAQSection'
-import { ContactSection } from '@/components/landing/ContactSection'
+import { SurrogateGallery } from '@/components/landing/SurrogateGallery'
+import { AboutSection } from '@/components/landing/AboutSection'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -20,18 +17,15 @@ export const metadata: Metadata = {
 }
 
 export default async function SurrogateLandingPage() {
-  const { landingPage, testimonials, faqs, benefits, applicationSteps } = await getLandingPageData()
+  const { landingPage } = await getLandingPageData()
 
   return (
     <main className="min-h-screen">
       <HeroSection data={landingPage} />
-      <TrustIndicators data={landingPage} />
-      <AboutSection data={landingPage} />
-      <BenefitsSection benefits={benefits} />
-      <ApplicationProcess steps={applicationSteps} />
-      <TestimonialsSection testimonials={testimonials} />
-      <FAQSection faqs={faqs} />
-      <ContactSection data={landingPage} />
+      <VideoSection />
+      <ApplicationProcess />
+      <SurrogateGallery />
+      <AboutSection />
     </main>
   )
 }
