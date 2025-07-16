@@ -12,8 +12,13 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { Testimonials } from './collections/Testimonials'
+import { FAQs } from './collections/FAQs'
+import { Benefits } from './collections/Benefits'
+import { ApplicationSteps } from './collections/ApplicationSteps'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { LandingPage } from './globals/LandingPage'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -65,9 +70,9 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Comments],
+  collections: [Pages, Posts, Media, Categories, Users, Comments, Testimonials, FAQs, Benefits, ApplicationSteps],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, LandingPage],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

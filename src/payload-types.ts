@@ -73,6 +73,10 @@ export interface Config {
     categories: Category;
     users: User;
     comments: Comment;
+    testimonials: Testimonial;
+    faqs: Faq;
+    benefits: Benefit;
+    'application-steps': ApplicationStep;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -89,6 +93,10 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     comments: CommentsSelect<false> | CommentsSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
+    benefits: BenefitsSelect<false> | BenefitsSelect<true>;
+    'application-steps': ApplicationStepsSelect<false> | ApplicationStepsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -103,10 +111,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'landing-page': LandingPage;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
   };
   locale: null;
   user: User & {
@@ -726,6 +736,142 @@ export interface Comment {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  name: string;
+  /**
+   * City, State
+   */
+  location?: string | null;
+  image?: (number | null) | Media;
+  /**
+   * The surrogate's story in their own words
+   */
+  testimonial: string;
+  /**
+   * Optional YouTube or Vimeo URL
+   */
+  videoUrl?: string | null;
+  journeyDetails?: {
+    /**
+     * How many times has this surrogate helped families?
+     */
+    numberOfJourneys?: number | null;
+    yearStarted?: number | null;
+  };
+  /**
+   * Show this testimonial prominently on the homepage
+   */
+  featured?: boolean | null;
+  /**
+   * Lower numbers appear first
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  category: 'eligibility' | 'process' | 'compensation' | 'medical' | 'legal' | 'support' | 'general';
+  /**
+   * Lower numbers appear first within each category
+   */
+  order?: number | null;
+  /**
+   * Show this FAQ prominently
+   */
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "benefits".
+ */
+export interface Benefit {
+  id: number;
+  title: string;
+  description: string;
+  icon: 'heart' | 'dollar' | 'shield' | 'users' | 'calendar' | 'medical' | 'support' | 'home' | 'star';
+  /**
+   * Optional expanded content for this benefit
+   */
+  detailedContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  order: number;
+  /**
+   * Show this benefit with special emphasis
+   */
+  highlighted?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "application-steps".
+ */
+export interface ApplicationStep {
+  id: number;
+  /**
+   * The order of this step in the process
+   */
+  stepNumber: number;
+  title: string;
+  description: string;
+  /**
+   * List any specific requirements for this step
+   */
+  requirements?:
+    | {
+        requirement: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * e.g., "1-2 weeks", "Same day"
+   */
+  timeEstimate?: string | null;
+  icon?: ('form' | 'phone' | 'medical' | 'document' | 'meeting' | 'check' | 'heart' | 'legal') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -827,6 +973,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'comments';
         value: number | Comment;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
+      } | null)
+    | ({
+        relationTo: 'benefits';
+        value: number | Benefit;
+      } | null)
+    | ({
+        relationTo: 'application-steps';
+        value: number | ApplicationStep;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1195,6 +1357,73 @@ export interface CommentsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  location?: T;
+  image?: T;
+  testimonial?: T;
+  videoUrl?: T;
+  journeyDetails?:
+    | T
+    | {
+        numberOfJourneys?: T;
+        yearStarted?: T;
+      };
+  featured?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  category?: T;
+  order?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "benefits_select".
+ */
+export interface BenefitsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  icon?: T;
+  detailedContent?: T;
+  order?: T;
+  highlighted?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "application-steps_select".
+ */
+export interface ApplicationStepsSelect<T extends boolean = true> {
+  stepNumber?: T;
+  title?: T;
+  description?: T;
+  requirements?:
+    | T
+    | {
+        requirement?: T;
+        id?: T;
+      };
+  timeEstimate?: T;
+  icon?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1466,6 +1695,79 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing-page".
+ */
+export interface LandingPage {
+  id: number;
+  heroHeadline: string;
+  heroSubheadline: string;
+  heroCTAText: string;
+  heroCTALink: string;
+  heroBackgroundImage: number | Media;
+  /**
+   * If provided, will be used instead of background image
+   */
+  heroVideo?: (number | null) | Media;
+  yearsInBusiness: number;
+  successfulJourneys: number;
+  certifications?:
+    | {
+        name: string;
+        logo?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  aboutTitle: string;
+  aboutDescription: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  aboutImages?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  phoneNumber: string;
+  email: string;
+  officeAddress: string;
+  /**
+   * e.g., Monday-Friday: 9AM-5PM PST
+   */
+  businessHours?: string | null;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerLinks?:
+    | {
+        label: string;
+        url: string;
+        category?: ('company' | 'resources' | 'legal') | null;
+        id?: string | null;
+      }[]
+    | null;
+  footerText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1506,6 +1808,59 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing-page_select".
+ */
+export interface LandingPageSelect<T extends boolean = true> {
+  heroHeadline?: T;
+  heroSubheadline?: T;
+  heroCTAText?: T;
+  heroCTALink?: T;
+  heroBackgroundImage?: T;
+  heroVideo?: T;
+  yearsInBusiness?: T;
+  successfulJourneys?: T;
+  certifications?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        id?: T;
+      };
+  aboutTitle?: T;
+  aboutDescription?: T;
+  aboutImages?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  phoneNumber?: T;
+  email?: T;
+  officeAddress?: T;
+  businessHours?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  footerLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        category?: T;
+        id?: T;
+      };
+  footerText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
